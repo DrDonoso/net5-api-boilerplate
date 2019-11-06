@@ -1,0 +1,9 @@
+version: "3.4"
+services:
+  boilerplate-api:
+    image: ${REGISTRY:-local}/boilerplate-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: ${BOILERPLATE_API}Dockerfile
+      args:
+        main: ${BOILERPLATE_API}

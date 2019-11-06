@@ -1,0 +1,8 @@
+version: "3.4"
+services:
+  boilerplate-api:
+    image: ${REGISTRY:-local}/boilerplate-api:${TAG:-latest}    
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "5001:80"
