@@ -8,6 +8,8 @@ services:
       args:
         main: ${BOILERPLATE_API_UNITTESTS}
         api: ${BOILERPLATE_API}
+    environment: 
+      BaseApiUrl: ${BaseApiUrl}
     entrypoint:
       - dotnet
       - test

@@ -6,7 +6,7 @@ namespace Boilerplate.Api.UnitTests
     public class IndexControllerTests
     {
         [Fact]
-        public void Test1()
+        public void ShouldGetResponseFromController()
         {
             var controller = new IndexController();
 
