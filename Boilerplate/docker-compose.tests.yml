@@ -15,6 +15,8 @@ services:
       - test
       - -l
       - trx;LogFileName=${TEST_RESULT_DIRECTORY}/TEST-api-unittests.xml
+    volumes:
+      - ${TEST_RESULT_DIRECTORY}:/${TEST_RESULT_DIRECTORY}
 
   boilerplate-api-integrationtests:
     image: boilerplate.api.integrationtests
@@ -31,3 +33,5 @@ services:
       - test
       - -l
       - trx;LogFileName=${TEST_RESULT_DIRECTORY}/TEST-api-integrationtests.xml
+    volumes:
+      - ${TEST_RESULT_DIRECTORY}:/${TEST_RESULT_DIRECTORY}
