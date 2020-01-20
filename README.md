@@ -1,4 +1,4 @@
-# Netcore SPA Boilerplate
+# Netcore API Boilerplate
 
 Run init.sh to rename to your project name.
 
