@@ -7,7 +7,6 @@ namespace Boilerplate.Api.IntegrationTests
     [Collection("Test collection")]
     public class IndexControllerTests
     {
-        private TestFixture _fixture;
         private static HttpClient _httpClient;
 
         public IndexControllerTests(TestFixture fixture)
