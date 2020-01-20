@@ -1,0 +1,26 @@
+pool:
+  name: Linux
+  timeoutInMinutes: 30
+  
+trigger:
+  branches:
+    include:
+    - master
+
+variables:
+  BaseApiUrl: http://boilerplate-api/
+  TEST_RESULT_DIRECTORY: $(Common.TestResultsDirectory)
+
+steps:
+- bash: ./build.sh
+  env:
+    TAG: $(Build.BuildNumber)
+  displayName: 'Build docker images and run unit and integration tests'
+
+- task: PublishTestResults@2
+  displayName: "Publish test results"
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '*.xml'
+    searchFolder: '$(TEST_RESULT_DIRECTORY)'
+    failTaskOnFailedTests: true
