@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS dotnet-builder 
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS dotnet-builder 
 
 ARG main
 
@@ -10,7 +10,7 @@ COPY ${main} ${main}
 
 RUN dotnet publish ${main} -c Release -o /build
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=dotnet-builder /build .
 ENTRYPOINT [ "dotnet", "Boilerplate.Api.dll"]

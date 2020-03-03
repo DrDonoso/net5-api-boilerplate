@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS dotnet-builder 
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS dotnet-builder 
 
 ARG main
 ARG api
