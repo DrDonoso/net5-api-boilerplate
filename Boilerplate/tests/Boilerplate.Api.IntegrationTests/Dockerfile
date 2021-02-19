@@ -1,7 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.3-buster-slim AS base
-WORKDIR /app
-
-FROM mcr.microsoft.com/dotnet/sdk:5.0.3-buster-slim AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0.103-buster-slim AS build
 
 WORKDIR /sln
 
@@ -16,8 +13,8 @@ RUN dotnet restore  "/sln/Boilerplate.sln"
 
 COPY . .
 
-RUN dotnet publish "/sln/src/Boilerplate.Api.IntegrationTests/Boilerplate.Api.IntegrationTests.csproj" -c Release --no-restore -o /app
+RUN dotnet publish "/sln/tests/Boilerplate.Api.IntegrationTests/Boilerplate.Api.IntegrationTests.csproj" -c Release --no-restore -o /app
 
-FROM base as final
+FROM mcr.microsoft.com/dotnet/sdk:5.0.103-buster-slim AS final
 WORKDIR /app
-COPY --from=dotnet-builder /app .
+COPY --from=build /app .

@@ -4,6 +4,4 @@ services:
     image: ${REGISTRY:-local}/boilerplate-api:${TAG:-latest}
     build:
       context: .
-      dockerfile: ${BOILERPLATE_API}Dockerfile
-      args:
-        main: ${BOILERPLATE_API}
+      dockerfile: src/Boilerplate.Api/Dockerfile

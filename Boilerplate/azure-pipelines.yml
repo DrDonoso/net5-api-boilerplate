@@ -8,7 +8,6 @@ trigger:
     - master
 
 variables:
-  BaseApiUrl: http://boilerplate-api/
   TEST_RESULT_DIRECTORY: $(Common.TestResultsDirectory)
 
 steps:

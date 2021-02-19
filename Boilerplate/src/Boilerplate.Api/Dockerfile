@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0.3-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0.3-buster-slim AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0.103-buster-slim AS build
 
 WORKDIR /sln
 
@@ -22,5 +22,5 @@ RUN dotnet publish "/sln/src/Boilerplate.Api/Boilerplate.Api.csproj" -c Release 
 
 FROM base as final
 WORKDIR /app
-COPY --from=dotnet-builder /app .
-ENTRYPOINT [ "dotnet", "Boilerplate.Api.dll"]
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "Boilerplate.Api.dll"]
