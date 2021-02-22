@@ -1,8 +1,8 @@
 mv Boilerplate $1
 
-find . -type f \( ! -name "init.sh" \) -exec sed -i s/Boilerplate/$1/g {} +
-find . -type f \( ! -name "init.sh" \) -exec sed -i s/boilerplate/${1,,}/g {} +
-find . -type f \( ! -name "init.sh" \) -exec sed -i s/BOILERPLATE/$(echo ${1^^} | tr . _)/g {} +
+find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/Boilerplate/$1/g {} +
+find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/boilerplate/${1,,}/g {} +
+find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/BOILERPLATE/$(echo ${1^^} | tr . _)/g {} +
 
 for j in $(find . -type d -name *Boilerplate*)
 do
