@@ -17,7 +17,7 @@ namespace Boilerplate.Api.IntegrationTests
         [Fact]
         public async Task ShouldGetResponseFromApi()
         {
-            await _httpClient.GetStringAsync(string.Empty);
+            await _httpClient.GetStringAsync("Index");
 
             Assert.True(true);
         }

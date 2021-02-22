@@ -3,7 +3,7 @@
 namespace Boilerplate.Api.Controllers
 {
     [ApiController]
-    [Route("")]
+    [Route("Index")]
     public class IndexController : ControllerBase
     {
         [HttpGet]

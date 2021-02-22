@@ -1,15 +1,20 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS dotnet-builder 
+FROM mcr.microsoft.com/dotnet/sdk:5.0.103-buster-slim AS build
 
-ARG main
-ARG api
+WORKDIR /sln
 
-COPY ${main}*.csproj ${main}
-COPY ${api}*.csproj ${api}
+COPY ["Boilerplate.sln", "Boilerplate.sln"]
 
-RUN dotnet restore ${main}
+COPY ["src/Boilerplate.Api/Boilerplate.Api.csproj", "src/Boilerplate.Api/Boilerplate.Api.csproj"]
 
-COPY ${main} ${main}
-COPY ${api} ${api}
+COPY ["tests/Boilerplate.Api.IntegrationTests/Boilerplate.Api.IntegrationTests.csproj", "tests/Boilerplate.Api.IntegrationTests/Boilerplate.Api.IntegrationTests.csproj"]
+COPY ["tests/Boilerplate.Api.UnitTests/Boilerplate.Api.UnitTests.csproj", "tests/Boilerplate.Api.UnitTests/Boilerplate.Api.UnitTests.csproj"]
 
-WORKDIR ${main}
-RUN dotnet build
+RUN dotnet restore  "/sln/Boilerplate.sln"
+
+COPY . .
+
+RUN dotnet publish "/sln/tests/Boilerplate.Api.UnitTests/Boilerplate.Api.UnitTests.csproj" -c Release --no-restore -o /app
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0.103-buster-slim AS final
+WORKDIR /app
+COPY --from=build /app .

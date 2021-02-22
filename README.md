@@ -15,3 +15,13 @@ You have to add permissions to the sh files in order to be executables in azure 
 ```bash
 git update-index --chmod=+x build.sh
 ```
+
+### Not working on zsh
+
+For some reason it doesn't work on zsh. If you are using on zsh run:
+
+```bash
+ exec bash 
+```
+
+and then run the initialize it again.

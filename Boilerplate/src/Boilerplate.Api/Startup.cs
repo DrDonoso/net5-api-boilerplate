@@ -41,6 +41,7 @@ namespace Boilerplate.Api
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Boilerplate Api");
+                c.RoutePrefix = string.Empty;
             });
         }
     }
