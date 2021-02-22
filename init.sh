@@ -1,4 +1,4 @@
-output=$(echo $1 | tr . _)
+output=$(echo $1 | xargs)
 
 mv Boilerplate $output
 
