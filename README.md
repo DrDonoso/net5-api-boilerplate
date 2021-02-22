@@ -18,7 +18,7 @@ git update-index --chmod=+x build.sh
 
 ### Not working on zsh
 
-For some reason it doesn't work on zsh. If you are working on zsh run:
+For some reason it doesn't work on zsh. If you are using on zsh run:
 
 ```bash
  exec bash 
