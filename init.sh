@@ -1,17 +1,19 @@
-mv Boilerplate $1
+output=$(echo $1 | tr . _)
 
-find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/Boilerplate/$1/g {} +
-find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/boilerplate/${1,,}/g {} +
-find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/BOILERPLATE/$(echo ${1^^} | tr . _)/g {} +
+mv Boilerplate $output
+
+find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/Boilerplate/$output/g {} +
+find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/boilerplate/$(echo ${output,,})/g {} +
+find . -type f \( ! -name "init.sh" ! -path "*/\.git/*" \) -exec sed -i s/BOILERPLATE/$(echo ${output^^})/g {} +
 
 for j in $(find . -type d -name *Boilerplate*)
 do
-    mv $j ${j/Boilerplate/$1}
+    mv $j ${j/Boilerplate/$output}
 done
 
 for j in $(find . -type f -name *Boilerplate*)
 do
-    mv $j ${j/Boilerplate/$1}
+    mv $j ${j/Boilerplate/$output}
 done
 
-rm -rf $1/*.sln && dotnet new sln -o $1 && dotnet sln $1 add **/**/**/*.csproj
+rm -rf $output/*.sln && dotnet new sln -o $output && dotnet sln $output add **/**/**/*.csproj
